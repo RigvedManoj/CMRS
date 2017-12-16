@@ -61,7 +61,6 @@
 <script type="text/javascript">
 var psw = false;
 var nameCheck = false;
-
 function colorName(color, message) {
     document.getElementById('userName').style.borderBottomColor = color;
     document.getElementById('userName').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
@@ -70,7 +69,6 @@ function colorName(color, message) {
     $('#userSpan').css('color', color);
     document.getElementById('userSpan').innerHTML = message;
 }
-
 function colorPassword(color, message) {
     document.getElementById('password').style.borderBottomColor = color;
     document.getElementById('password').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
@@ -79,7 +77,6 @@ function colorPassword(color, message) {
     $('#passwordSpan').css("color", color);
     document.getElementById("passwordSpan").innerHTML = message;
 }
-
 function colorCPassword(color, message) {
     document.getElementById('confirmPassword').style.borderBottomColor = color;
     document.getElementById('confirmPassword').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
@@ -88,7 +85,6 @@ function colorCPassword(color, message) {
     $('#cpasswordSpan').css("color", color);
     document.getElementById("cpasswordSpan").innerHTML = message;
 }
-
 function pass() {
     if($('#password').val().length>5) {
         colorPassword('#26a69a', "SUCCESS")
@@ -105,7 +101,6 @@ function pass() {
         colorPassword("#f44336", "Length of password should be greater than 5");
     }
 }
-
 function checkPassword() {
     if($('#password').val().length>5) {
         colorPassword("#4caf50", "");
@@ -113,7 +108,6 @@ function checkPassword() {
         colorPassword("#f44336", "Length of password should be greater than 5");
     }
 }
-
 function checkcPassword() {
     if($('#confirmPassword').val() === $('#password').val()) {
         colorCPassword("#4caf50", "");
@@ -121,14 +115,12 @@ function checkcPassword() {
         colorCPassword("#f44336", "Password does not match");
     }
 }
-
 $('#password, #confirmPassword').on('keydown keyup', function(e) {
     pass();
     // #f44336 // Red
     // #26a69a //blue
     // #4caf50 //green
 });
-
 $('#password, #confirmPassword').on('focusout', function(e) {
     if(e.currentTarget.name == "password") {
         checkPassword();
@@ -138,7 +130,6 @@ $('#password, #confirmPassword').on('focusout', function(e) {
     }
     // #9e9e9e //gray
 });
-
 $('#userName').on('keyup keydown', function(e) {
     if($('#userName').val() != 0) {
         colorName("#26a69a", "SUCCESS")
@@ -146,7 +137,6 @@ $('#userName').on('keyup keydown', function(e) {
         colorName("#f44336", "This field cannot be empty")
     }
 });
-
 $('#userName').on('focusout', function(e) {
     if($('#userName').val() != 0) {
         colorName("#4caf50", "SUCCESS");
@@ -156,15 +146,13 @@ $('#userName').on('focusout', function(e) {
         nameCheck = false;
     }
 });
-
-
 function register() {
     if(nameCheck && psw) {
         let data = $('form').serializeArray();
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "register",
+            url: "register.php",
             data: {userName: data[0].value, password:data[1].value},
             success: function(data) {
                 console.log(data);
