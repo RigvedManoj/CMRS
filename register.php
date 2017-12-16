@@ -4,9 +4,9 @@ $error=0;
 $name=$_POST['userName'];
 $pass1=$_POST["password"];
 $pass=password_hash($pass1,PASSWORD_BCRYPT);
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";// Enter mysql username
-$password = "AthlonY2";// Enter mysql password
+$password = "";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,7 +39,7 @@ $stmt->execute();
 //$_SESSION['username']=$name;
 $stmt->close();
 $conn->close();
-header("Location: profile.html");
+echo "registered succesfully";
 }
 }
 ?>

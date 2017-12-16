@@ -1,0 +1,211 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .card{
+      width:500px;
+    }
+    </style>
+</head>
+<body>
+
+<div class="valign-wrapper" style="width:100%;height:100%;position: absolute;">
+    <div class="valign" style="width:100%;">
+        <div class="container">
+           <div class="row">
+              <div class="col s12 m6 offset-m3">
+                 <div class="card">
+                    <div class="card-content">
+                        <span class="card-title black-text" style="text-align: center;">Patient Register</span>
+                        <form method="post" action="/register">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix" id="account_circle">account_circle</i>
+                                    <input name="userName" id="userName" class="validate" required="true" aria-required="true" type="text">
+                                    <label for="userName"> Name</label>
+                                    <span id="userSpan"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix" id="dialpad">dialpad</i>
+                                    <input name="password" id="password" class="validate" required="true" aria-required="true" type="password">
+                                    <label for="password">Password</label>
+                                    <span id="passwordSpan"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix" id="lock">lock</i>
+                                    <input name="confirmPassword" id="confirmPassword" class="validate" required="true" aria-required="true" type="password">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <span id="cpasswordSpan"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <i class="material-icons prefix" id="mail">mail</i>
+
+                                    <input name="email" id="email" class="validate" required="true" aria-required="true" type="email">
+                                    <label for="email">Email</label>
+                                    <span id="emailSpan"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <i class="material-icons prefix" id="date">access_time</i>
+
+                                    <input type="date" class="validate" name="dob" id="dob"  required="required">
+                                    <label for="dob"></label>
+                                    <span id="dobSpan"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <span id="response"></span>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m4 offset-m4 offset-s3">
+                                    <input class="btn" value="Register" type="button" onclick="register();">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+var psw = false;
+var nameCheck = false;
+
+function colorName(color, message) {
+    document.getElementById('userName').style.borderBottomColor = color;
+    document.getElementById('userName').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
+    $("label[for='userName']").css("color", color);
+    $('#account_circle').css("color", color);
+    $('#userSpan').css('color', color);
+    document.getElementById('userSpan').innerHTML = message;
+}
+
+function colorPassword(color, message) {
+    document.getElementById('password').style.borderBottomColor = color;
+    document.getElementById('password').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
+    $("label[for='password']").css("color", color);
+    $('#dialpad').css("color", color);
+    $('#passwordSpan').css("color", color);
+    document.getElementById("passwordSpan").innerHTML = message;
+}
+
+function colorCPassword(color, message) {
+    document.getElementById('confirmPassword').style.borderBottomColor = color;
+    document.getElementById('confirmPassword').style["boxShadow"] =`0px 1px 0px 0px ${color}`;
+    $("label[for='confirmPassword']").css("color", color);
+    $('#lock').css("color", color);
+    $('#cpasswordSpan').css("color", color);
+    document.getElementById("cpasswordSpan").innerHTML = message;
+}
+
+function pass() {
+    if($('#password').val().length>5) {
+        colorPassword('#26a69a', "SUCCESS")
+        if ($('#password').val() === $('#confirmPassword').val()) {
+            psw = true;
+            colorCPassword("#26a69a", "Password Matched")
+        }
+        else {
+            colorCPassword("#f44336", "Password does not match")
+            psw = false;
+        }
+    } else {
+        psw = false;
+        colorPassword("#f44336", "Length of password should be greater than 5");
+    }
+}
+
+function checkPassword() {
+    if($('#password').val().length>5) {
+        colorPassword("#4caf50", "");
+    } else {
+        colorPassword("#f44336", "Length of password should be greater than 5");
+    }
+}
+
+function checkcPassword() {
+    if($('#confirmPassword').val() === $('#password').val()) {
+        colorCPassword("#4caf50", "");
+    } else {
+        colorCPassword("#f44336", "Password does not match");
+    }
+}
+
+$('#password, #confirmPassword').on('keydown keyup', function(e) {
+    pass();
+    // #f44336 // Red
+    // #26a69a //blue
+    // #4caf50 //green
+});
+
+$('#password, #confirmPassword').on('focusout', function(e) {
+    if(e.currentTarget.name == "password") {
+        checkPassword();
+    } else {
+        checkPassword();
+        checkcPassword();
+    }
+    // #9e9e9e //gray
+});
+
+$('#userName').on('keyup keydown', function(e) {
+    if($('#userName').val() != 0) {
+        colorName("#26a69a", "SUCCESS")
+    } else {
+        colorName("#f44336", "This field cannot be empty")
+    }
+});
+
+$('#userName').on('focusout', function(e) {
+    if($('#userName').val() != 0) {
+        colorName("#4caf50", "SUCCESS");
+        nameCheck = true;
+    } else {
+        colorName("#f44336", "This field cannot be empty");
+        nameCheck = false;
+    }
+});
+
+
+function register() {
+    if(nameCheck && psw) {
+        let data = $('form').serializeArray();
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "register.php",
+            data: {userName: data[0].value, password:data[1].value},
+            success: function(data) {
+                console.log(data);
+                $('#response').html(data);
+
+                      var url = window.location.href;
+                      url = url.replace(/\/[^\/]*$/, '/profile.html');
+                      window.location.href = url;
+
+            },
+            fail: function(data) {
+                $('#response').html('There is an error!');
+            }
+        });
+    }else {
+        window.alert('Do not leave any fields  empty!');
+    }
+}
+</script>
+</html>
