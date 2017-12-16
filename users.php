@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost:3307";
-$username = "root";
-$password = "";
+$servername = "localhost";
+$username = "root";//enter mysql username
+$password = "AthlonY2";//enter mysql password
 $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -14,12 +14,16 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 <?php
-$servername = "localhost:3307";
-$username = "root";
-$password = "";
+$servername = "localhost";
+$username = "root";//enter mysql username
+$password = "AthlonY2";//enter mysql password
 $dbname = "hospital";
 // Create connection
+
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
+$sql="DROP TABLE PATIENTS";
+mysqli_query($conn, $sql);
 $sql = "CREATE TABLE PATIENTS(
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(30) NOT NULL,

@@ -189,7 +189,7 @@ function register() {
         $.ajax({
             type: "POST",
             url: "register.php",
-            data: {userName: data[0].value, password:data[1].value},
+            data: {userName: data[0].value, password:data[1].value ,email:data[3].value,dob:data[4].value},
             success: function(data) {
                 console.log(data);
                 $('#response').html(data);
