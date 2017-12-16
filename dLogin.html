@@ -113,15 +113,21 @@ function login() {
     if(nameCheck && psw) {
         $.ajax({
             type: "POST",
-            url: "dLogin.php",
+            url: "login.php",
             data: {userName: data[0].value, password:data[1].value},
             success: function(data){
               console.log(data);
               $('#response').html(data);
 
-                    var url = window.location.href;
+                 if(data=="Success")
+                 {
+                   var url = window.location.href;
                     url = url.replace(/\/[^\/]*$/, '/dProfile.html');
                     window.location.href = url;
+                  }
+                  else {
+                      $('#response').html('There is an error!');
+                  }
             },
             fail: function(data){
                 $('#response').html('There is an error!');

@@ -223,11 +223,15 @@ function register() {
             success: function(data) {
                 console.log(data);
                 $('#response').html(data);
-
+                if(data=="Success")
+                {
                       var url = window.location.href;
                       url = url.replace(/\/[^\/]*$/, '/dProfile.html');
                       window.location.href = url;
-
+                    }
+              else{
+                  $('#response').html(data);
+              }
             },
             fail: function(data) {
                 $('#response').html('There is an error!');

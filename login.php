@@ -2,10 +2,10 @@
 $servername = "localhost";
 $username = "root";// Enter mysql username
 $password = "AthlonY2";// Enter mysql password
-$dbname = "doctrate";
+$dbname = "hospital";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$c=$_POST['pass'];
-$a=$_POST["email"];
+$pass=$_POST['password'];
+$name=$_POST["userName"];
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -13,30 +13,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 session_start();
-$sql = "SELECT name,email,pass FROM SIGNUP";
+$sql = "SELECT name,pass FROM USERS";
 $result = $conn->query($sql);
 $k=1;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      $name=$row["name"];
-      $email=$row["email"];
-      $pass=$row['pass'];
-      if($email==$a && password_verify($c,$pass))
+      $stored_name=$row["name"];
+      $stored_pass=$row['pass'];
+      if($name==$stored_name && password_verify($pass,$stored_pass))
     {
-      $_SESSION['username'] = $name;
       $k=0;
-     header("Location:loading.html");
+      $_SESSION['user'] = $username;
+      echo "Success";
       exit();
     }
     }
 }
 if($k==1)
 {
-$_SESSION['username'] = 1;
-$conn->close();
-sleep(3);
-header("Location:signup.php");
+  echo "fail";
   exit();
 }
 }
