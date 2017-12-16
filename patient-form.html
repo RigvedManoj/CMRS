@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<style>
+.container
+{
+   position: absolute;
+   top:40%;
+   left:30%;
+    width: 50%;
+}
+.card-panel
+{
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+ <div class=" container">
+        <h5 class="center-align">
+       <div class="card-panel hoverable teal lighten-2" onclick="patient()">Patient</div>
+      <div class="card-panel hoverable teal lighten-2" onclick="doctor()">Doctor</div></h5>
+     </div>
+   </div>
+<script>
+function patient()
+{
+  window.location.href = "Patient-REG.html";
+}
+function doctor()
+{
+  window.location.href = "Doctor-REG.html";
+}
+</script>
+</body>
+</html>
