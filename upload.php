@@ -1,9 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 session_start();
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";// Enter mysql username
-$password = "";// Enter mysql password
+$password = "AthlonY2";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $rec=$_POST['records'];
@@ -13,6 +13,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 $sql = "DELETE FROM PAT_REC WHERE name='$name'";
 
 if (mysqli_query($conn, $sql)) {
@@ -28,6 +29,7 @@ else {;}
   $stmt->execute();
 
   $stmt->close();
+
 
 
   $conn->close();}

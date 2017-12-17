@@ -1,15 +1,17 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 session_start();
+
 $error=0;
 $name=$_POST['userName'];
 $pass1=$_POST["password"];
 $pass=password_hash($pass1,PASSWORD_BCRYPT);
 $email=$_POST['email'];
 $dob=$_POST['dob'];
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";// Enter mysql username
-$password = "";// Enter mysql password
+$password = "AthlonY2";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
