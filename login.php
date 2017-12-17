@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";// Enter mysql username
-$password = "AthlonY2";// Enter mysql password
+$password = "";// Enter mysql password
 $dbname = "hospital";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $pass=$_POST['password'];
