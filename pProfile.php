@@ -1,11 +1,11 @@
 <?php
 session_start();
-if(empty(  $_SESSION['user']))
+if(empty(  $_SESSION['patient']))
 {
 header("Location:index.html");
 }
 else {
-$name=$_SESSION['user'];
+$name=$_SESSION['patient'];
 }
 ?>
 <html>
@@ -119,10 +119,12 @@ function search(){
       success: function(data) {
           console.log(data);
 
-
+if(data=='success')
+{
                 var url = window.location.href;
                 url = url.replace(/\/[^\/]*$/, '/doc.php');
                 window.location.href = url;
+              }
         },
 
 

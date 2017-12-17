@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
 if($error==0)
 {
 echo "Success";
-$_SESSION['user'] = $name;
+$_SESSION['doctor'] = $name;
 $stmt = $conn->prepare("INSERT INTO USERS (name, pass, mail, dob ,type ,rate ,rp) VALUES (?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("sssssss", $new_name, $new_pass, $new_email, $new_dob, $new_type, $new_rate, $new_rp);
 // set parameters and execute

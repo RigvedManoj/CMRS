@@ -7,7 +7,7 @@ $password = "AthlonY2";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $rec=$_POST['records'];
-$name=$_SESSION['user'];
+$name=$_SESSION['patient'];
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {

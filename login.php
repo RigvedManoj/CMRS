@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 session_start();
-$sql = "SELECT name,pass FROM USERS";
+$sql = "SELECT name,pass,type FROM USERS";
 $result = $conn->query($sql);
 $k=1;
 if ($result->num_rows > 0) {
@@ -21,15 +21,21 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       $stored_name=$row["name"];
       $stored_pass=$row['pass'];
+      $stored_type=$row['type'];
       if($name==$stored_name && password_verify($pass,$stored_pass))
     {
       $k=0;
-      $_SESSION['user'] = $name;
+      if($stored_type=='patient')
+      $_SESSION['patient'] = $name;
+      else {
+          $_SESSION['doctor'] = $name;
+      }
       echo "Success";
       exit();
     }
     }
 }
+$conn->close();
 if($k==1)
 {
   echo "fail";
