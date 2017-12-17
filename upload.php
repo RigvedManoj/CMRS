@@ -1,19 +1,24 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 session_start();
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";// Enter mysql username
-$password = "";// Enter mysql password
+$password = "AthlonY2";// Enter mysql password
 $dbname = "hospital";
 // Create connection
+$rec=$_POST['records'];
+$name=$_SESSION['user'];
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$sql = "UPDATE PAT_REC SET record='$rec' WHERE name='$name'";
 
-  $rec=$_POST['records'];
-  $name=$_SESSION['user'];
+if (mysqli_query($conn, $sql)) {
+    echo "Record updated successfully";
+}
+else {
   $stmt = $conn->prepare("INSERT INTO PAT_REC (name, record) VALUES (?, ?)");
   $stmt->bind_param("ss", $new_name, $new_rec);
   // set parameters and execute
@@ -22,6 +27,9 @@ if ($conn->connect_error) {
   $stmt->execute();
 
   $stmt->close();
+
+}
+
   $conn->close();}
 
 ?>

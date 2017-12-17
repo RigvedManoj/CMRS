@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";//enter mysql username
-$password = "";//enter mysql password
+$password = "AthlonY2";//enter mysql password
 $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -14,9 +14,9 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 <?php
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";//enter mysql username
-$password = "";//enter mysql password
+$password = "AthlonY2";//enter mysql password
 $dbname = "hospital";
 // Create connection
 
@@ -31,6 +31,8 @@ pass VARCHAR(100) NOT NULL,
 mail VARCHAR(70) NOT NULL,
 dob VARCHAR(20) NOT NULL,
 type VARCHAR(10) NOT NULL,
+rate FLOAT(2,1),
+rp   INT(6),
 reg_date TIMESTAMP
 )";
 if (mysqli_query($conn, $sql)) {
@@ -41,9 +43,9 @@ if (mysqli_query($conn, $sql)) {
 $conn->close();
 ?>
 <?php
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";//enter mysql username
-$password = "";//enter mysql password
+$password = "AthlonY2";//enter mysql password
 $dbname = "hospital";
 // Create connection
 

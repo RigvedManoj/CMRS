@@ -6,9 +6,9 @@ $pass1=$_POST["password"];
 $pass=password_hash($pass1,PASSWORD_BCRYPT);
 $email=$_POST['email'];
 $dob=$_POST['dob'];
-$servername = "localhost:3307";
+$servername = "localhost";
 $username = "root";// Enter mysql username
-$password = "";// Enter mysql password
+$password = "AthlonY2";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,14 +40,16 @@ if($error==0)
 {
 echo "Success";
 $_SESSION['user'] = $name;
-$stmt = $conn->prepare("INSERT INTO USERS (name, pass, mail, dob ,type) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $new_name, $new_pass, $new_email, $new_dob, $new_type);
+$stmt = $conn->prepare("INSERT INTO USERS (name, pass, mail, dob ,type ,rate ,rp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssss", $new_name, $new_pass, $new_email, $new_dob, $new_type, $new_rate, $new_rp);
 // set parameters and execute
 $new_name = $name;
 $new_pass = $pass;
 $new_email = $email;
 $new_dob = $dob;
 $new_type="doctor";
+$new_rate=0;
+$new_rp=0;
 $stmt->execute();
 //$_SESSION['username']=$name;
 $stmt->close();
