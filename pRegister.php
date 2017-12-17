@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+session_start();
 $error=0;
 $name=$_POST['userName'];
 $pass1=$_POST["password"];

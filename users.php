@@ -31,6 +31,8 @@ pass VARCHAR(100) NOT NULL,
 mail VARCHAR(70) NOT NULL,
 dob VARCHAR(20) NOT NULL,
 type VARCHAR(10) NOT NULL,
+rate FLOAT(2,1),
+rp   INT(6),
 reg_date TIMESTAMP
 )";
 if (mysqli_query($conn, $sql)) {
