@@ -13,12 +13,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "UPDATE PAT_REC SET record='$rec' WHERE name='$name'";
+
+$sql = "DELETE FROM PAT_REC WHERE name='$name'";
 
 if (mysqli_query($conn, $sql)) {
-    echo "Record updated successfully";
+  //  echo "Record updated successfully"
+  ;
 }
-else {
+else {;}
   $stmt = $conn->prepare("INSERT INTO PAT_REC (name, record) VALUES (?, ?)");
   $stmt->bind_param("ss", $new_name, $new_rec);
   // set parameters and execute
@@ -28,7 +30,7 @@ else {
 
   $stmt->close();
 
-}
+
 
   $conn->close();}
 
