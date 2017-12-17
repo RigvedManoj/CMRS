@@ -6,9 +6,9 @@ $pass1=$_POST["password"];
 $pass=password_hash($pass1,PASSWORD_BCRYPT);
 $email=$_POST['email'];
 $dob=$_POST['dob'];
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";// Enter mysql username
-$password = "AthlonY2";// Enter mysql password
+$password = "";// Enter mysql password
 $dbname = "hospital";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
