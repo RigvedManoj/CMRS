@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
 if($error==0)
 {
   echo "Success";
+  $_SESSION['user'] = $name;
 $stmt = $conn->prepare("INSERT INTO USERS (name, pass, mail, dob ,type) VALUES (?, ?, ?, ?, ?)");
 $stmt->bind_param("sssss", $new_name, $new_pass, $new_email, $new_dob, $new_type);
 // set parameters and execute

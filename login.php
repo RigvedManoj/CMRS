@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
       if($name==$stored_name && password_verify($pass,$stored_pass))
     {
       $k=0;
-      $_SESSION['user'] = $username;
+      $_SESSION['user'] = $name;
       echo "Success";
       exit();
     }

@@ -121,11 +121,11 @@ function login() {
               if(data=="Success")
               {
                     var url = window.location.href;
-                    url = url.replace(/\/[^\/]*$/, '/pProfile.html');
+                    url = url.replace(/\/[^\/]*$/, '/pProfile.php');
                     window.location.href = url;
                   }
              else{
-                $('#response').html('There is an error!'); 
+                $('#response').html('There is an error!');
              }
             },
             fail: function(data){
